@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shocks - Totalizador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <img class="logo-loja" src="assets/images/shocks.png" alt="">
+        <h1>Gerador de totalização de produtos</h1>
+        <form id="orcamentoForm">
+            <div class="input-group">
+                <label for="nomeCliente">Nome do Cliente:</label>
+                <input type="text" id="nomeCliente" name="nomeCliente" required>
+            </div>
+
+            <div id="comodosContainer">
+                </div>
+
+            <button type="button" id="addComodoBtn" class="add-button">Adicionar Ambiente +</button>
+
+            <hr>
+
+            <div class="input-group">
+                <label for="marcaModeloGeral">Marca/Modelo Preferida (Geral para o pedido):</label>
+                <input type="text" id="marcaModeloGeral" name="marcaModeloGeral" placeholder="Ex: Schneider, Legrand, Tramontina">
+            </div>
+
+            <div class="input-group">
+                <label for="observacaoGeral">Observações Adicionais para o Pedido:</label>
+                <textarea id="observacaoGeral" name="observacaoGeral" placeholder="Ex: Necessário vistoria prévia no local,..."></textarea>
+            </div>
+
+            <div class="buttons-group">
+                <button type="button" id="gerarRelatorioCompletoBtn" class="generate-button">Gerar Relatório Completo</button>
+                <button type="button" id="gerarRelatorioResumidoBtn" class="generate-button-outline">Gerar Relatório Resumido</button>
+            </div>
+            
+            <button type="button" id="resetOrcamentoBtn" class="reset-button">Refazer Orçamento</button>
+        </form>
+
+        <div id="relatorioGerado" class="relatorio">
+            <h2>Relatório de Pedido - <span id="reportTypeHeader"></span></h2>
+            <div class="report-section">
+                <h3>Informações Gerais</h3>
+                <p id="nomeClienteRelatorio">Cliente: </p>
+                <p id="marcaModeloGeralRelatorio">Marca/Modelo Preferida: </p>
+                <p id="observacaoGeralRelatorio">Observações: </p>
+            </div>
+
+            <div id="detalhesComodosSection" class="report-section">
+                <h3>Detalhes por Ambiente</h3>
+                <div id="detalhesComodosRelatorio">
+                    </div>
+            </div>
+
+            <div id="totalGeralItensSection" class="report-section">
+                <h3>Total Geral de Itens</h3>
+                <ul id="listaItensTotalRelatorio" class="total-items-list">
+                    </ul>
+                <p id="totalItensGeralSumario" class="total-summary"></p>
+            </div>
+
+            <button type="button" id="imprimirRelatorio" class="print-button">Imprimir Relatório</button>
+        </div>
+    </div>
+
+    <template id="comodoTemplate">
+        <div class="comodo-block">
+            <h3>Cômodo <span class="comodo-number">1</span></h3>
+            <div class="input-group">
+                <label for="ambiente-select-placeholder">Ambiente:</label>
+                <select class="ambiente-select" required>
+                    <option value="">Selecione o Ambiente</option>
+                    <option value="Quarto">Quarto</option>
+                    <option value="Sala">Sala</option>
+                    <option value="Cozinha">Cozinha</option>
+                    <option value="Banheiro">Banheiro</option>
+                    <option value="Corredor">Corredor</option>
+                    <option value="AreaExterna">Área Externa</option>
+                    <option value="Outros">Outros (especificar)</option>
+                </select>
+            </div>
+            <div class="input-group outros-ambiente-group" style="display: none;">
+                <label for="outros-ambiente-input-placeholder">Nome do Ambiente:</label>
+                <input type="text" class="outros-ambiente-input" placeholder="Ex: Escritório, Garagem">
+            </div>
+
+            <div class="item-category">
+                <h4>Disjuntores</h4>
+                <div class="item-list">
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Disjuntor Unipolar 16A" class="product-image">
+                            <label>Disjuntor Unipolar 16A:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdDisjuntorUnipolar16A" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Disjuntor Unipolar 20A" class="product-image">
+                            <label>Disjuntor Unipolar 20A:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdDisjuntorUnipolar20A" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Disjuntor Bipolar 25A" class="product-image">
+                            <label>Disjuntor Bipolar 25A:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdDisjuntorBipolar25A" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Disjuntor Bipolar 32A" class="product-image">
+                            <label>Disjuntor Bipolar 32A:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdDisjuntorBipolar32A" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-category">
+                <h4>Espelhos com Base 4x2</h4>
+                <div class="item-list">
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Espelho 4x2 Cego" class="product-image">
+                            <label>Espelho 4x2 para Módulo Cego:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdEspelho4x2Cego" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Espelho 4x2 1 Módulo" class="product-image">
+                            <label>Espelho 4x2 para Um Módulo:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdEspelho4x2UmModulo" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Espelho 4x2 2 Módulos" class="product-image">
+                            <label>Espelho 4x2 para Dois Módulos:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdEspelho4x2DoisModulos" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Espelho 4x2 3 Módulos" class="product-image">
+                            <label>Espelho 4x2 para Três Módulos:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdEspelho4x2TresModulos" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-category">
+                <h4>Espelhos com Base 4x4</h4>
+                <div class="item-list">
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Espelho 4x4 Cego" class="product-image">
+                            <label>Espelho 4x4 para Módulo Cego:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdEspelho4x4Cego" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Espelho 4x4 2 Módulos" class="product-image">
+                            <label>Espelho 4x4 para Dois Módulos:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdEspelho4x4DoisModulos" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Espelho 4x4 4 Módulos" class="product-image">
+                            <label>Espelho 4x4 para Quatro Módulos:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdEspelho4x4QuatroModulos" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Espelho 4x4 6 Módulos" class="product-image">
+                            <label>Espelho 4x4 para Seis Módulos:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdEspelho4x4SeisModulos" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-category">
+                <h4>Módulos</h4>
+                <div class="item-list">
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo Interruptor Simples" class="product-image">
+                            <label>Módulo de Interruptor Simples:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloInterruptorSimples" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo Interruptor Paralelo" class="product-image">
+                            <label>Módulo de Interruptor Paralelo:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloInterruptorParalelo" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo Interruptor Intermediário" class="product-image">
+                            <label>Módulo de Interruptor Intermediário:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloInterruptorIntermediario" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo Tomada 10A" class="product-image">
+                            <label>Módulo de Tomada 10A:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloTomada10A" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo Tomada 20A" class="product-image">
+                            <label>Módulo de Tomada 20A:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloTomada20A" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo Tomada 20A Vermelha" class="product-image">
+                            <label>Módulo de Tomada 20A Vermelha:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloTomada20AVermelha" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo Um Furo" class="product-image">
+                            <label>Módulo de Um Furo:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloUmFuro" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo RJ" class="product-image">
+                            <label>Módulo RJ (Rede/Telefone):</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloRJ" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Terminal de Rede" class="product-image">
+                            <label>Terminal de Rede:</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdTerminalRede" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                    <div class="item-group">
+                        <div class="item-header">
+                            <img src="assets/images/trocar.png" alt="Módulo cego" class="product-image">
+                            <label>Módulo Cego (Avulso):</label>
+                        </div>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn decrease-btn" data-action="decrease">-</button>
+                            <input type="number" class="qtd-input" data-item-id="qtdModuloCegoModulo" min="0" value="0">
+                            <button type="button" class="quantity-btn increase-btn" data-action="increase">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="remove-comodo-btn">Remover Ambiente</button>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+    <script src="front.js"></script>
+</body>
+</html>

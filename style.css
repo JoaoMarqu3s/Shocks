@@ -1,0 +1,626 @@
+/* Import Google Font for a clean look */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* --- General Body Styles --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F0F2F5; /* Light Gray - Background of the page */
+    color: #333333; /* Dark Gray - Default text color */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align content to the top */
+    min-height: 100vh; /* Full viewport height */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    padding-top: 40px; /* Space from the top of the page */
+    padding-bottom: 40px; /* Adiciona um padding na parte de baixo para evitar corte em telas pequenas */
+}
+
+/* --- Container for the Form and Report --- */
+.container {
+    background-color: #FFFFFF; /* White - Background of the main container */
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 100%;
+    max-width: 800px; /* Maximum width for a well-contained layout */
+    margin: 0 20px; /* Small horizontal margin for smaller screens */
+    box-sizing: border-box;
+}
+
+.logo-loja {
+    display: block; /* Garante que a imagem se comporta como um bloco */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    max-width: 100%; /* Garante que a imagem não transborde o container */
+    height: auto; /* Mantém a proporção da imagem */
+    /* Você pode adicionar um padding-bottom se quiser um espaço entre a logo e o H1 */
+    padding-bottom: 20px; /* Exemplo de espaçamento */
+}
+/* --- Headings --- */
+h1, h2 {
+    color: #CC0000; /* Red - Main heading color */
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 35px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #EEEEEE; /* Light Gray - Separator line */
+}
+
+h3 {
+    color: #CC0000; /* Red for section titles */
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+    border-bottom: 1px dashed #DDDDDD; /* Linha tracejada suave */
+    padding-bottom: 10px;
+}
+
+h4 {
+    color: #555555;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    color: #555555; /* Medium Gray */
+}
+
+/* --- Form Elements (Client Info, General Remarks) --- */
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #444444; /* Darker Gray for labels */
+}
+
+input[type="text"],
+input[type="number"],
+select, /* Adiciona select aqui */
+textarea {
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    padding: 10px;
+    border: 1px solid #CCCCCC; /* Light Gray - Input border */
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+    -webkit-appearance: none; /* Remove default styling for selects on WebKit browsers */
+    -moz-appearance: none;    /* Remove default styling for selects on Mozilla browsers */
+    appearance: none;         /* Remove default styling for selects */
+    background-color: #FFFFFF; /* Garante fundo branco para select */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23444444" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Seta customizada para o select */
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 18px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus, /* Adiciona select aqui */
+textarea:focus {
+    border-color: #FFD700; /* Yellow - Focus highlight */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); /* Yellow glow on focus */
+}
+
+/* Estilo para inputs de quantidade - diminuído */
+input[type="number"] {
+    max-width: 80px; /* Largura ainda menor para campos de quantidade */
+    padding: 8px; /* Padding um pouco menor */
+    font-size: 0.95rem; /* Fonte um pouco menor */
+    text-align: center;
+    margin-bottom: 0; /* Remove a margem inferior para alinhamento */
+}
+
+textarea {
+    min-height: 80px; /* Altura mínima para observações gerais */
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+/* --- Item Sections --- */
+/* Esta classe agora se aplica dentro de cada bloco de cômodo */
+.item-section {
+    background-color: #F8F8F8; /* Lighter gray for item sections */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Lighter shadow for sections */
+}
+
+
+/* --- Item List Layout (using Flexbox) */
+.item-list {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    justify-content: space-around; /* Distribute items evenly with space around */
+    gap: 20px; /* Space between items */
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.item-group {
+    flex: 1 1 calc(50% - 20px); /* Two columns layout, accounting for gap */
+    min-width: 280px; /* Minimum width for an item group before wrapping */
+    background-color: #FFFFFF; /* White - Background for each item block */
+    padding: 15px;
+    border-radius: 7px;
+    border: 1px solid #E0E0E0; /* Lighter Gray - Border for item block */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Very subtle shadow */
+}
+
+.item-group .item-header {
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    justify-content: center; /* Centraliza a imagem e o label */
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* Estilo para as imagens dos produtos */
+.item-group .product-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: contain;
+    border: 1px solid #EEEEEE;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.item-group label {
+    margin-bottom: 0;
+    text-align: left; /* Alinha o texto do label à esquerda dentro do espaço disponível */
+    color: #333333;
+    font-weight: bold;
+    flex-grow: 1; /* Permite que o label ocupe o espaço restante */
+    white-space: normal; /* Permite que o texto quebre a linha */
+    overflow: visible; /* Garante que o overflow seja visível (não cortado) */
+    text-overflow: clip; /* Remove as reticências */
+    max-width: calc(100% - 60px); /* Limita a largura do label para dar espaço à imagem (50px imagem + 10px margem) */
+}
+
+
+/* --- Buttons --- */
+button {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    background-color: #CC0000; /* Red - Button background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 25px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: #A00000; /* Darker Red on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Estilo para o novo botão de reset */
+.reset-button {
+    background-color: #6c757d; /* Cinza para o botão de reset */
+    margin-top: 15px; /* Espaço entre o botão de gerar e o de reset */
+}
+
+.reset-button:hover {
+    background-color: #5a6268; /* Cinza mais escuro no hover */
+}
+
+/* Estilo para o botão "Adicionar Cômodo +" */
+.add-button {
+    background-color: #28a745; /* Verde */
+    margin-top: 20px;
+}
+
+.add-button:hover {
+    background-color: #218838; /* Verde mais escuro */
+}
+
+/* Estilo para o botão "Remover Cômodo" */
+.remove-comodo-btn {
+    background-color: #dc3545; /* Vermelho mais claro */
+    margin-top: 20px;
+    width: auto; /* Permite que o botão seja menor que 100% */
+    padding: 8px 15px;
+    font-size: 0.9em;
+    align-self: flex-end; /* Alinha à direita dentro do comodo-block */
+    margin-right: 15px; /* Margem da direita */
+    margin-bottom: 10px;
+}
+
+.logo-loja{
+    width: 25%;
+}
+
+.remove-comodo-btn:hover {
+    background-color: #c82333;
+}
+
+/* --- Horizontal Rule (Separator) --- */
+hr {
+    border: none;
+    border-top: 1px solid #DDDDDD; /* Light Gray - Separator */
+    margin: 40px 0;
+}
+
+/* Separador de cômodo dentro do formulário */
+.comodo-separator {
+    border-top: 2px dashed #BBBBBB; /* Separador mais grosso e tracejado para cômodos */
+    margin: 35px 0;
+}
+
+/* Estilo para o bloco de cada cômodo */
+.comodo-block {
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column; /* Para alinhar o botão remover */
+}
+
+.comodo-block h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    color: #CC0000;
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 10px;
+}
+
+/* --- Report Section --- */
+.relatorio {
+    background-color: #F5F5F5; /* Lighter Gray - Report background */
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    margin-top: 30px;
+    display: none; /* Hidden by default, JavaScript will show it */
+    text-align: left;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.relatorio h2 {
+    color: #CC0000; /* Red - Report heading */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.relatorio p {
+    text-align: left;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.relatorio strong {
+    color: #CC0000; /* Red for emphasis in totals */
+}
+
+/* Estilos para o relatório por cômodo */
+.comodo-relatorio-item {
+    background-color: #FFF;
+    border: 1px solid #EEE;
+    border-left: 4px solid #CC0000;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    page-break-inside: avoid; /* Evita que o bloco do cômodo quebre entre páginas */
+}
+
+.comodo-relatorio-item h4 {
+    color: #333 !important;
+    font-size: 1.05em;
+    margin-bottom: 8px;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 5px;
+    text-align: left; /* Alinha o título do cômodo à esquerda no relatório */
+}
+
+.comodo-relatorio-item ul {
+    list-style: disc; /* Mantém bullet points para itens do cômodo */
+    padding-left: 25px;
+    margin-top: 5px;
+}
+
+.comodo-relatorio-item ul li {
+    background-color: transparent !important;
+    border-left: none !important;
+    padding: 3px 0;
+    font-size: 0.85em;
+    box-shadow: none !important;
+    display: list-item; /* Garante que o item da lista seja exibido como um item de lista */
+    color: #333333; /* Garante a cor do texto */
+}
+
+/* Estilo para a lista total de itens */
+#listaItensTotalRelatorio {
+    list-style: none; /* Remove bullet points para a lista total */
+    padding-left: 0;
+    margin-top: 15px;
+}
+
+#listaItensTotalRelatorio li {
+    background-color: #f9f9f9; /* Fundo levemente diferente */
+    border: 1px solid #eee;
+    border-left: 3px solid #CC0000; /* Borda à esquerda para destaque */
+    margin-bottom: 8px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    display: flex; /* Usa flexbox para alinhar nome e quantidade */
+    justify-content: space-between; /* Espaça o nome e a quantidade */
+    align-items: center;
+    font-size: 0.95em;
+    color: #333333; /* Cor do texto */
+}
+
+#listaItensTotalRelatorio li span {
+    word-break: break-word; /* Garante que palavras longas quebrem */
+    white-space: normal; /* Permite que o texto quebre a linha */
+}
+
+#listaItensTotalRelatorio li span:first-child {
+    flex-basis: 75%; /* Tenta dar 75% da largura base para o nome */
+    max-width: 75%; /* Limita a largura máxima do nome do item */
+}
+
+#listaItensTotalRelatorio li span:last-child {
+    flex-basis: 25%; /* Tenta dar 25% da largura base para a quantidade */
+    max-width: 25%; /* Limita a largura máxima da quantidade */
+    text-align: right; /* Alinha a quantidade à direita */
+    font-weight: bold; /* Garante que a quantidade seja em negrito */
+}
+
+
+#totalItensGeralSumario {
+    font-size: 1em; /* Ajusta o tamanho da fonte */
+    margin-top: 15px;
+    padding-top: 8px;
+    border-top: 1px solid #000; /* Borda fina */
+    text-align: right;
+    font-weight: bold;
+    color: #CC0000;
+}
+
+/* --- Estilos para os controles de Quantidade (botões + e -) --- */
+.quantity-control {
+    display: flex; /* Para alinhar o input e os botões lado a lado */
+    align-items:flex-end;
+    justify-content: center;
+    gap: 10px; /* Espaço entre os botões e o input */
+}
+
+.quantity-control .qtd-input {
+    text-align: center; /* Centraliza o texto do número */
+
+}
+
+/* Remove setas de incremento/decremento em Chrome/Safari/Edge */
+.quantity-control .qtd-input::-webkit-outer-spin-button,
+.quantity-control .qtd-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantity-btn {
+    width: 30px; /* Tamanho dos botões */
+    height: 30px; /* Tamanho dos botões */
+    border-radius: 60%; /* Torna os botões redondos */
+    border: none;
+    font-size: 1.2em; /* Tamanho do símbolo +/- */
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.decrease-btn {
+    background-color: #CC0000; /* Vermelho */
+    color: white;
+}
+
+.increase-btn {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+}
+
+.quantity-btn:hover {
+    transform: scale(1.05); /* Pequeno efeito de escala ao passar o mouse */
+}
+
+.increase-btn:hover{
+    background-color: #218838;
+}
+
+.decrease-btn:active, .increase-btn:active {
+    transform: scale(0.95); /* Pequeno efeito de clique */
+}
+
+/* Ajustes para o layout de item-group com os novos botões */
+.item-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Espaçamento entre os grupos de itens */
+    background-color: #f9f9f9;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.item-group .item-header {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre a imagem e o label */
+    flex-grow: 1; /* Permite que o cabeçalho ocupe o espaço disponível */
+}
+
+.item-group .product-image {
+    width: 30px; /* Tamanho reduzido da imagem para se alinhar melhor */
+    height: 30px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+
+/* --- PRINT STYLES --- */
+@media print {
+    body {
+        background-color: #FFFFFF !important;
+        margin: 0;
+        padding: 0;
+        display: block; /* Garante que o body não seja flex no print */
+    }
+
+    .container {
+        width: auto !important;
+        max-width: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        padding: 20px !important; /* Padding ajustado para impressão */
+        border-radius: 0 !important;
+        background-color: #FFFFFF !important;
+    }
+
+    /* Ocultar elementos do formulário e botões */
+    form,
+    #addComodoBtn,
+    #resetOrcamentoBtn,
+    #imprimirRelatorio,
+    .input-group label, /* Oculta labels dos inputs do formulário */
+    .input-group input, /* Oculta inputs do formulário */
+    .input-group textarea, /* Oculta textareas do formulário */
+    .input-group select, /* Oculta selects do formulário */
+    .item-section, /* Oculta as seções de itens do formulário */
+    .comodo-block .remove-comodo-btn, /* Oculta o botão remover cômodo no formulário */
+    .comodo-separator, /* Oculta o separador de cômodo no formulário */
+    hr { /* Oculta todas as linhas horizontais que não sejam do relatório */
+        display: none !important;
+    }
+
+    /* Mostrar apenas o relatório gerado */
+    #relatorioGerado {
+        display: block !important;
+        position: relative !important;
+        width: 100% !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        background-color: #FFFFFF !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important; /* Remove padding extra no relatório para o print */
+        margin: 0 auto !important; /* Centraliza o relatório no papel */
+        color: #000000; /* Garante texto preto para impressão */
+    }
+
+    /* Forçar visibilidade para elementos do relatório */
+    #relatorioGerado h2,
+    #relatorioGerado h3,
+    #relatorioGerado p,
+    #relatorioGerado ul,
+    #relatorioGerado li,
+    .comodo-relatorio-item,
+    .comodo-relatorio-item h4,
+    .comodo-relatorio-item ul,
+    .comodo-relatorio-item ul li,
+    #listaItensTotalRelatorio,
+    #listaItensTotalRelatorio li,
+    #totalItensGeralSumario {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        background-color: transparent !important; /* Garante fundo transparente */
+        color: #000000 !important; /* Garante texto preto para impressão */
+        -webkit-print-color-adjust: exact; /* Para imprimir cores de fundo e texto como estão */
+        print-color-adjust: exact;
+    }
+
+    /* Ajustes específicos para a lista de itens totais no print */
+    #listaItensTotalRelatorio li {
+        display: flex !important; /* Mantém o flexbox para alinhamento */
+        justify-content: space-between !important;
+        padding: 5px 0 !important; /* Padding ajustado */
+        border: none !important; /* Remove bordas para uma impressão mais limpa */
+        background-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    #listaItensTotalRelatorio li span {
+        color: #000000 !important;
+    }
+
+    #listaItensTotalRelatorio li span:last-child {
+        font-weight: bold !important;
+    }
+
+    /* Ajustes para detalhes dos cômodos no print */
+    #detalhesComodosRelatorio {
+        margin-bottom: 20px;
+    }
+
+    .comodo-relatorio-item {
+        border: 1px solid #ccc !important; /* Borda simples para o print */
+        border-left: 4px solid #CC0000 !important; /* Mantém a borda vermelha lateral */
+        padding: 10px !important;
+        margin-bottom: 15px !important;
+        page-break-inside: avoid; /* Evita quebra de página dentro do item do cômodo */
+    }
+
+    .comodo-relatorio-item ul {
+        list-style: disc !important; /* Garante marcadores */
+        padding-left: 20px !important;
+    }
+
+    .comodo-relatorio-item ul li {
+        padding: 2px 0 !important;
+        font-size: 0.85em !important;
+    }
+
+    h1, h2, h3, h4, p {
+        color: #000000 !important; /* Garante títulos e parágrafos em preto */
+    }
+
+    /* Esconde imagens do formulário, mas tenta manter as de placeholder no relatório se houver */
+    .product-image {
+        display: none; /* Oculta imagens no formulário */
+    }
+
+    /* Se as imagens de placeholder forem geradas no relatório, pode ser necessário uma regra para elas */
+    #relatorioGerado .product-image {
+        display: inline-block !important; /* Tenta mostrar se estiverem no relatório */
+        /* Ajuste de tamanho e margem se necessário */
+    }
+}
