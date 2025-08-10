@@ -1,9 +1,15 @@
 /* Import Google Font for a clean look */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: "Fredoka", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: 500;
+}
 
 /* --- General Body Styles --- */
 body {
-    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #F0F2F5; /* Light Gray - Background of the page */
@@ -24,7 +30,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     width: 100%;
-    max-width: 800px; /* Maximum width for a well-contained layout */
+    max-width: 1000px; /* Maximum width for a well-contained layout */
     margin: 0 20px; /* Small horizontal margin for smaller screens */
     box-sizing: border-box;
 }
@@ -39,10 +45,10 @@ body {
 }
 /* --- Headings --- */
 h1, h2 {
-    color: #CC0000; /* Red - Main heading color */
+    color: #706e6e; /* Red - Main heading color */
     text-align: center;
     margin-bottom: 25px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 h2 {
@@ -85,7 +91,7 @@ p {
 label {
     display: block;
     margin-bottom: 8px;
-    font-weight: bold;
+    font-weight: 500;
     color: #444444; /* Darker Gray for labels */
 }
 
@@ -179,8 +185,8 @@ textarea {
 
 /* Estilo para as imagens dos produtos */
 .item-group .product-image {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     margin-right: 10px;
     object-fit: contain;
     border: 1px solid #EEEEEE;
@@ -192,7 +198,7 @@ textarea {
     margin-bottom: 0;
     text-align: left; /* Alinha o texto do label à esquerda dentro do espaço disponível */
     color: #333333;
-    font-weight: bold;
+    font-weight: 550;
     flex-grow: 1; /* Permite que o label ocupe o espaço restante */
     white-space: normal; /* Permite que o texto quebre a linha */
     overflow: visible; /* Garante que o overflow seja visível (não cortado) */
@@ -214,7 +220,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
     margin-top: 25px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: 0.5px;
 }
 
@@ -235,12 +241,12 @@ button:hover {
 
 /* Estilo para o botão "Adicionar Cômodo +" */
 .add-button {
-    background-color: #28a745; /* Verde */
+    background-color: #0d6d23; /* Verde */
     margin-top: 20px;
 }
 
 .add-button:hover {
-    background-color: #218838; /* Verde mais escuro */
+    background-color: #0d4319; /* Verde mais escuro */
 }
 
 /* Estilo para o botão "Remover Cômodo" */
@@ -292,7 +298,7 @@ hr {
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 1.6em;
-    color: #CC0000;
+    color: #544f4f;
     border-bottom: 1px solid #DDDDDD;
     padding-bottom: 10px;
 }
@@ -397,7 +403,7 @@ hr {
     flex-basis: 25%; /* Tenta dar 25% da largura base para a quantidade */
     max-width: 25%; /* Limita a largura máxima da quantidade */
     text-align: right; /* Alinha a quantidade à direita */
-    font-weight: bold; /* Garante que a quantidade seja em negrito */
+    font-weight: 550; /* Garante que a quantidade seja em negrito */
 }
 
 
@@ -407,7 +413,7 @@ hr {
     padding-top: 8px;
     border-top: 1px solid #000; /* Borda fina */
     text-align: right;
-    font-weight: bold;
+    font-weight: 550;
     color: #CC0000;
 }
 
@@ -421,7 +427,8 @@ hr {
 
 .quantity-control .qtd-input {
     text-align: center; /* Centraliza o texto do número */
-
+    text-decoration: none;
+    
 }
 
 /* Remove setas de incremento/decremento em Chrome/Safari/Edge */
@@ -432,12 +439,12 @@ hr {
 }
 
 .quantity-btn {
-    width: 30px; /* Tamanho dos botões */
-    height: 30px; /* Tamanho dos botões */
+    width: 32px; /* Tamanho dos botões */
+    height: 32px; /* Tamanho dos botões */
     border-radius: 60%; /* Torna os botões redondos */
     border: none;
     font-size: 1.2em; /* Tamanho do símbolo +/- */
-    font-weight: bold;
+    font-weight: 500;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -446,12 +453,12 @@ hr {
 }
 
 .decrease-btn {
-    background-color: #CC0000; /* Vermelho */
+    background-color: #c10e0e; /* Vermelho */
     color: white;
 }
 
 .increase-btn {
-    background-color: #4CAF50; /* Verde */
+    background-color: #26962a; /* Verde */
     color: white;
 }
 
@@ -460,7 +467,7 @@ hr {
 }
 
 .increase-btn:hover{
-    background-color: #218838;
+    background-color: #116423;
 }
 
 .decrease-btn:active, .increase-btn:active {
@@ -487,12 +494,18 @@ hr {
 }
 
 .item-group .product-image {
-    width: 30px; /* Tamanho reduzido da imagem para se alinhar melhor */
-    height: 30px;
+    width: 90px; /* Tamanho reduzido da imagem para se alinhar melhor */
+    height: 90px;
+    box-shadow: 0 0 2px 2px #bbbbbb; 
+    transition: box-shadow 0.3s ease;
     border-radius: 4px;
     object-fit: cover;
 }
 
+.item-group .product-image:hover{
+    box-shadow: 0 0 2px 3px #bbbbbb; 
+    transition: box-shadow 0.3s ease;
+}
 
 /* --- PRINT STYLES --- */
 @media print {

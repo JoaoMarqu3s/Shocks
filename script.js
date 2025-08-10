@@ -30,11 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Mapeamento de IDs de itens para seus nomes e categorias
     const itensMapeamento = {
-        // Disjuntores
-        'qtdDisjuntorUnipolar16A': { nome: 'Disjuntor Unipolar 16A', categoria: 'Disjuntores' },
-        'qtdDisjuntorUnipolar20A': { nome: 'Disjuntor Unipolar 20A', categoria: 'Disjuntores' },
-        'qtdDisjuntorBipolar25A': { nome: 'Disjuntor Bipolar 25A', categoria: 'Disjuntores' },
-        'qtdDisjuntorBipolar32A': { nome: 'Disjuntor Bipolar 32A', categoria: 'Disjuntores' },
 
         // Espelhos 4x2
         'qtdEspelho4x2Cego': { nome: 'Espelho 4x2 para Módulo Cego', categoria: 'Espelhos com Base 4x2' },
