@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Espelhos 4x4
         'qtdEspelho4x4Cego': { nome: 'Espelho 4x4 para Módulo Cego', categoria: 'Espelhos com Base 4x4' },
+        'qtdEspelho4x4UmModulo': { nome: 'Espelho 4x4 para Um módulo', categoria: 'Espelhos com Base 4x4' },
         'qtdEspelho4x4DoisModulos': { nome: 'Espelho 4x4 para Dois Módulos', categoria: 'Espelhos com Base 4x4' },
+        'qtdEspelho4x4TrêsModulos': { nome: 'Espelho 4x4 para Três Módulos', categoria: 'Espelhos com Base 4x4' },
         'qtdEspelho4x4QuatroModulos': { nome: 'Espelho 4x4 para Quatro Módulos', categoria: 'Espelhos com Base 4x4' },
         'qtdEspelho4x4SeisModulos': { nome: 'Espelho 4x4 para Seis Módulos', categoria: 'Espelhos com Base 4x4' },
 
@@ -49,11 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
         'qtdModuloInterruptorIntermediario': { nome: 'Módulo de Interruptor Intermediário', categoria: 'Módulos' },
         'qtdModuloTomada10A': { nome: 'Módulo de Tomada 10A', categoria: 'Módulos' },
         'qtdModuloTomada20A': { nome: 'Módulo de Tomada 20A', categoria: 'Módulos' },
-        'qtdModuloTomada20AVermelha': { nome: 'Módulo de Tomada 20A Vermelha', categoria: 'Módulos' },
-        'qtdModuloUmFuro': { nome: 'Módulo de Um Furo', categoria: 'Módulos' },
-        'qtdModuloRJ': { nome: 'Módulo RJ (Rede/Telefone)', categoria: 'Módulos' },
-        'qtdTerminalRede': { nome: 'Terminal de Rede', categoria: 'Módulos' },
-        'qtdModuloCegoModulo': { nome: 'Módulo Cego (Avulso)', categoria: 'Módulos' }
+        'qtdModuloTomada220V': { nome: 'Módulo de Tomada 220V', categoria: 'Módulos' },
+        'qtdModuloSaida': { nome: 'Módulo Saída de fio', categoria: 'Módulos' },
+        'qtdModuloRJ11': { nome: 'Módulo RJ11', categoria: 'Módulos' },
+        'qtdModuloRJ45': { nome: 'Módulo RJ11', categoria: 'Módulos' },
+        'qtdModuloPulsador': { nome: 'Módulo Pulsador', categoria: 'Módulos' },
+        'qtdModuloCampainhaEletronica': { nome: 'Campainha eletrônica', categoria: 'Módulos' },
+        'qtdModuloCegoModulo': { nome: 'Módulo Cego (Avulso)', categoria: 'Módulos' },
+        'qtdModuloCigarra': { nome: 'Módulo Campainha Cigarra', categoria: 'Módulos' },
+        'qtdModuloUSB': { nome: 'Módulo USB', categoria: 'Módulos' }
     };
 
 
